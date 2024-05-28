@@ -2,10 +2,10 @@
 import { TextField } from "@mui/material";
 import React from "react";
 
-const Input = ({ lable = "" }) => {
+const Input = ({ lable = "",className }) => {
   return (
-    <div>
-      <TextField label={lable} className="!text-black" focused />
+    <div className="w-full">
+      <TextField label={lable} className={`text-black ${className && className}`} focused />
     </div>
   );
 };
