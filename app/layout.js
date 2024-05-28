@@ -1,5 +1,5 @@
+import Providers from "@/tools/Providers";
 import "./globals.css";
-
 
 export const metadata = {
   title: "Login page Next App",
@@ -8,8 +8,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <Providers>
+      <html lang="en" dir="rtl">
+        <body>{children}</body>
+      </html>
+    </Providers>
   );
 }
