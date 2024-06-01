@@ -1,59 +1,74 @@
 "use client";
-import { AccountCircle } from "@mui/icons-material";
+import { RemoveRedEye } from "@mui/icons-material";
 import { InputAdornment } from "@mui/material";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import React from "react";
+import React, { useState } from "react";
 
-const Input = ({ lable = "", className, icon, infoIcon, type }) => {
+const Input = ({
+  lable = "",
+  className,
+  icon,
+  dir = "rtl",
+  infoIcon,
+  type = "text",
+  name = "",
+}) => {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="w-full">
-      <Box
-        component="form"
-        sx={{
-          "& > :not(style)": { m: 1, width: "25ch", height: "15px" },
-        }}
-        noValidate
+      <TextField
+        id="outlined-basic"
+        variant="outlined"
         autoComplete="off"
-      >
-        <TextField
-          id="outlined-basic"
-          variant="outlined"
-          type={type ? type : "text"}
-          label={lable}
-          className={`text-black focus:!border-none ${className && className}`}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="start">
-                {infoIcon && infoIcon}
-              </InputAdornment>
-            ),
-            startAdornment: (
-              <InputAdornment position="start">{icon && icon}</InputAdornment>
-            ),
-          }}
-          sx={{
-            "& .MuiInputBase-root": {
-              height: 30,
-              borderRadius: "5px",
-              margin: "0px",
+        name={name}
+        dir={dir}
+        type={showPassword && type === "password" ? "text" : type}
+        label={lable}
+        className={`text-black focus:!border-none ${className && className}`}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="start">
+              {type === "password" ? (
+                <div onClick={()=>setShowPassword(!showPassword)}>
+                  <RemoveRedEye fontSize="small" />
+                </div>
+              ) : (
+                infoIcon
+              )}
+            </InputAdornment>
+          ),
+          startAdornment: (
+            <InputAdornment position="start">{icon && icon}</InputAdornment>
+          ),
+        }}
+        sx={{
+          "& .MuiInputBase-root": {
+            height: 35,
+            borderRadius: "5px",
+            margin: "0px",
+          },
+          "& .MuiOutlinedInput-root": {
+            paddingRight: "2px",
+          },
+          "& .MuiOutlinedInput-root": {
+            "& input": {
+              paddingLeft: "0px",
+              paddingRight: "10px",
             },
-            "& .MuiOutlinedInput-root": {
-              "&.Mui-focused fieldset": {
-                borderColor: "gray",
-              },
-              "&:hover fieldset": {
-                borderColor: "gray",
-              },
+            "&.Mui-focused fieldset": {
+              borderColor: "gray",
             },
-            "& .MuiInputLabel-root": {
-              "&.Mui-focused": {
-                color: "black", 
-              },
+            "&:hover fieldset": {
+              borderColor: "gray",
             },
-          }}
-        />
-      </Box>
+          },
+          "& .MuiInputLabel-root": {
+            "&.Mui-focused": {
+              color: "black",
+            },
+          },
+        }}
+      />
     </div>
   );
 };
