@@ -2,31 +2,26 @@
 import Input from "@/tools/Input";
 import Image from "next/image";
 import React, { useState } from "react";
-import loginImage from "@/public/images/computer-account-login-password_165488-4519.jpg";
-import { AccountBox, Mail, Person, VpnKey } from "@mui/icons-material";
-import { Button, Divider, Tab, Tabs } from "@mui/material";
+import loginImage from "@/public/images/computer-account-login-password_165488-4519_prev_ui.png";
+import {
+  AccountBox,
+  LoginSharp,
+  Mail,
+  Person,
+  VpnKey,
+} from "@mui/icons-material";
+import { Button, Divider } from "@mui/material";
+import "./Login.css";
 const Login = () => {
-  const [value, setValue] = useState("signup");
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const [value, setValue] = useState("login");
   return (
-    <div className="flex gap-2 w-full justify-around p-5 h-full">
+    <div
+      className={`flex bg-white bg-opacity-50 rounded-2xl transition-transform container duration-700 ${
+        value === "signup" ? "flex-row-reverse" : "flex-row"
+      } gap-2 w-full justify-around p-2 h-full`}
+    >
       <div className="w-[30%] flex">
-        <div className="h-auto w-[20%] pt-10">
-          <Tabs
-            orientation="vertical"
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-            className=""
-          >
-            <Tab label="ورود" className="!h-16" value="login" />
-            <Tab label="ثبت نام" className="!h-16" value="signup" />
-          </Tabs>
-        </div>
-        <div className="flex w-[80%] flex-col items-center p-10 bg-blue-100 shadow-2xl rounded-2xl justify-between">
+        <div className="flex w-[80%] flex-col items-center p-10 bg-white shadow-2xl rounded-2xl justify-between">
           <div className="w-[100%] flex flex-col gap-6 items-center">
             <div className="w-full text-lg pb-4 flex justify-start font-bold">
               {value === "login" ? "ورود" : "ثبت نام"}
@@ -85,14 +80,26 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="w-[60%] flex justify-center">
+      <div className="w-[60%] h-full flex flex-col justify-center items-center">
         <Image
           alt="loginPhoto"
           width={1200}
           height={980}
-          className="object-contain"
+          className="object-contain h-[60%]"
           src={loginImage}
         />
+        <Button
+          variant="contained"
+          className="!w-28 gap-2 cursor-pointer shadow-md shadow-blue-300 rounded-md flex items-center justify-center p-2"
+          onClick={
+            value === "signup"
+              ? () => setValue("login")
+              : () => setValue("signup")
+          }
+        >
+          {value === "signup" ? "ورود" : "ثبت نام"}
+          {value === "login" ? <Person /> : <LoginSharp />}
+        </Button>
       </div>
     </div>
   );
