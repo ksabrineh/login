@@ -2,7 +2,9 @@
 import Input from "@/tools/Input";
 import Image from "next/image";
 import React, { useState } from "react";
-import loginImage from "@/public/images/computer-account-login-password_165488-4519_prev_ui.png";
+import loginImage from "@/public/images/Waveflow-Welcome-Still_LSM-HD.jpg";
+import loginImagePhone from "@/public/images/computer-account-login-password_165488-4519_prev_ui.png";
+
 import {
   AccountBox,
   LoginSharp,
@@ -11,17 +13,18 @@ import {
   VpnKey,
 } from "@mui/icons-material";
 import { Button, Divider } from "@mui/material";
-import "./Login.css";
 const Login = () => {
   const [value, setValue] = useState("login");
   return (
     <div
-      className={`flex bg-white bg-opacity-50 rounded-2xl transition-transform container duration-700 ${
-        value === "signup" ? "flex-row-reverse" : "flex-row"
-      } gap-2 w-full justify-around p-2 h-full`}
+      className={`flex rounded-2xl container ${
+        value === "signup" ? "md:!flex-row-reverse flex-col-reverse" : "md:!flex-row flex-col-reverse"
+      } w-full justify-center h-full`}
     >
-      <div className="w-[30%] flex">
-        <div className="flex w-[80%] flex-col items-center p-10 bg-white shadow-2xl rounded-2xl justify-between">
+      <div className={`md:!w-[30%] w-full ${
+          value === "signup" ? "md:!rounded-l-2xl rounded-2xl" : " md:!rounded-r-2xl rounded-2xl"
+        } bg-white flex md:!overflow-hidden justify-center`}>
+        <div className="flex w-full flex-col items-center h-full pt-10 pb-10 pr-5 pl-5 justify-between">
           <div className="w-[100%] flex flex-col gap-6 items-center">
             <div className="w-full text-lg pb-4 flex justify-start font-bold">
               {value === "login" ? "ورود" : "ثبت نام"}
@@ -61,9 +64,9 @@ const Login = () => {
               {value === "login" ? "ورود" : "ثبت"}
             </Button>
           </div>
-          <div className="w-full text-xs opacity-100 items-center justify-center flex">
+          <div className="w-full pt-5 text-xs opacity-100 items-center justify-center flex">
             <Divider className="!w-[15%]" />
-            <p className="w-[50%] opacity-50 pr-2">
+            <p className="w-fit opacity-50 pr-2">
               آیا قبلا ثبت نام کرده اید؟
             </p>
             <p
@@ -72,7 +75,7 @@ const Login = () => {
                   ? () => setValue("signup")
                   : () => setValue("login")
               }
-              className="w-[18%] font-bold !text-blue-600 !opacity-100 cursor-pointer pr-1 pl-1"
+              className="w-fit font-bold !text-blue-600 !opacity-100 cursor-pointer pr-1 pl-1"
             >
               {value === "login" ? "ثبت نام" : "ورود"}
             </p>
@@ -80,17 +83,28 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="w-[60%] h-full flex flex-col justify-center items-center">
+      <div
+        className={`md:!w-[70%] w-full h-full relative md:!justify-normal justify-center flex md:!overflow-hidden ${
+          value === "signup" ? "md:!rounded-r-2xl" : "md:!rounded-l-2xl"
+        }`}
+      >
         <Image
           alt="loginPhoto"
           width={1200}
           height={980}
-          className="object-contain h-[60%]"
+          className="object-cover h-full hidden md:!block absolute rounded-t-2xl md:!rounded-none brightness-75 w-full"
           src={loginImage}
         />
+         <Image
+          alt="loginPhoto"
+          width={1200}
+          height={980}
+          className="object-cover md:!hidden h-full block absolute rounded-t-2xl md:!rounded-none w-full"
+          src={loginImagePhone}
+        />
         <Button
-          variant="contained"
-          className="!w-28 gap-2 cursor-pointer shadow-md shadow-blue-300 rounded-md flex items-center justify-center p-2"
+          variant="outlined"
+          className="!w-28 absolute gap-2 h-10 top-[62%] !text-white md:!right-48 cursor-pointer shadow-sm shadow-white rounded-md md:!flex !hidden items-center justify-center p-2"
           onClick={
             value === "signup"
               ? () => setValue("login")
