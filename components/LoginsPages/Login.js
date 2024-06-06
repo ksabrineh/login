@@ -22,7 +22,7 @@ const Login = () => {
       } w-full justify-center h-full`}
     >
       <div className={`md:!w-[30%] w-full ${
-          value === "signup" ? "md:!rounded-l-2xl rounded-2xl" : " md:!rounded-r-2xl rounded-2xl"
+          value === "signup" ? "md:!rounded-l-2xl rounded-2xl md:!rounded-r-none" : " md:!rounded-r-2xl md:!rounded-l-none rounded-2xl"
         } bg-white flex md:!overflow-hidden justify-center`}>
         <div className="flex w-full flex-col items-center h-full pt-10 pb-10 pr-5 pl-5 justify-between">
           <div className="w-[100%] flex flex-col gap-6 items-center">
