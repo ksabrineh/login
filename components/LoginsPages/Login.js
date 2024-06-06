@@ -104,7 +104,7 @@ const Login = () => {
         />
         <Button
           variant="outlined"
-          className="!w-28 absolute gap-2 h-10 top-[62%] !text-white md:!right-48 cursor-pointer shadow-sm shadow-white rounded-md md:!flex !hidden items-center justify-center p-2"
+          className="!w-28 absolute gap-2 h-10 animate-pulse top-[62%] !text-white md:!right-48 cursor-pointer shadow-sm shadow-white rounded-md md:!flex !hidden items-center justify-center p-2"
           onClick={
             value === "signup"
               ? () => setValue("login")
